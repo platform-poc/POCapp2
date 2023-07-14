@@ -16,7 +16,7 @@ env:
 
 jobs:
   build:
-    # Allow the job to fetch a GitHub ID token
+    # Allow  job to fetch a GitHub ID token
     permissions:
       contents: 'read'
       id-token: 'write'
