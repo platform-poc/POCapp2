@@ -1,5 +1,4 @@
 name: cloudbuild
-
 on:
   push:
     branches:
