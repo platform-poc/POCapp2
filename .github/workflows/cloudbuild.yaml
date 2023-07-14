@@ -1,4 +1,5 @@
 name: cloudbuild
+
 on:
   push:
     branches:
@@ -15,7 +16,7 @@ env:
 
 jobs:
   build:
-    # Allow  job to fetch a GitHub ID token
+    # Allow the job to fetch a GitHub ID token
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -48,18 +49,17 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-           extraProperties: |
+          
+          extraProperties: |
             sonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
             sonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-            sonar.links.homepage=https://sonarcloud.io/project/information?id=poc-ikea_pocapp2
+            sonar.links.homepage=https://sonarcloud.io/project/overview?id=poc-ikea_pocapp2
       
       - name: Run Code Coverage
-        # Perform code coverage steps here (e.g., using a specific code coverage tool)
-        # Add any necessary configuration or commands to generate code coverage reports
+        run: echo "Run code coverage steps here"
         
       - name: Build Merge
-        # Perform build merge steps here (e.g., merging branches or pull requests)
-        # Add any necessary configuration or commands for merging
+        run: echo "Run build merge steps here"
         
       - name: Deploy to Cloud Run
         uses: google-github-actions/deploy-cloudrun@main
