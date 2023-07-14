@@ -40,7 +40,8 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           gcloud builds submit --tag gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }} ./ --project ${{ env.PROJECT_ID }}
-          
+      - name: Install SonarLint
+        run: npm install -g sonarlint    
       - name: Run SonarLint
         run: sonarlint
         
