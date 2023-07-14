@@ -52,8 +52,8 @@ jobs:
         with:
           
           extraProperties: |
-            sonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-            sonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+            sonar.projectKey=poc-ikea_pocapp2
+            sonar.organization=poc-ikea
             sonar.links.homepage=https://sonarcloud.io/project/overview?id=poc-ikea_pocapp2
       
       - name: Run Code Coverage
