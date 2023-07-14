@@ -54,7 +54,7 @@ jobs:
           extraProperties: |
             sonar.projectKey=poc-ikea_pocapp2
             sonar.organization=poc-ikea
-            sonar.links.homepage=https://sonarcloud.io/project/overview?id=poc-ikea_pocapp2
+            sonar.links.homepage=https://sonarcloud.io/projects
       
       - name: Run Code Coverage
         run: echo "Run code coverage steps here"
