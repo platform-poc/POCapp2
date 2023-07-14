@@ -12,7 +12,9 @@ on:
 env:
   PROJECT_ID: clean-mason-391409 # TODO: update Google Cloud project id
   SERVICE: pochost2 # TODO: update Cloud Run service name
-  REGION: europe-west2 # TODO: update Cloud Run service region
+  REGION: europe-west2
+  SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+  SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
 
 jobs:
   build:
@@ -40,28 +42,23 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           gcloud builds submit --tag gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }} ./ --project ${{ env.PROJECT_ID }}
-      - name: Install SonarLint
-        run: npm install -g sonarlint    
-      - name: Run SonarLint
-        run: sonarlint
-        
+          
       - name: Run SonarCloud analysis
         uses: sonarsource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT_KEY: ${{ env.SONAR_PROJECT_KEY }}
+          SONAR_ORGANIZATION: ${{ env.SONAR_ORGANIZATION }}
         with:
-          
+          projectBaseDir: .
           extraProperties: |
-            sonar.projectKey=poc-ikea_pocapp2
-            sonar.organization=poc-ikea
-            sonar.links.homepage= https://sonarcloud.io/project/overview?id=poc-ikea_pocapp2
+            sonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
+            sonar.organization=${{ env.SONAR_ORGANIZATION }}
+            sonar.links.homepage=https://sonarcloud.io/project/overview?id=${{ env.SONAR_PROJECT_KEY }}
+          
+      - name: Run SonarLint
+        run: sonarlint
       
-      - name: Run Code Coverage
-        run: echo "Run code coverage steps here"
-        
-      - name: Build Merge
-        run: echo "Run build merge steps here"
-        
       - name: Deploy to Cloud Run
         uses: google-github-actions/deploy-cloudrun@main
         with:
