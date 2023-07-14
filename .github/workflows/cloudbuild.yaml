@@ -50,7 +50,6 @@ jobs:
           SONAR_PROJECT_KEY: ${{ env.SONAR_PROJECT_KEY }}
           SONAR_ORGANIZATION: ${{ env.SONAR_ORGANIZATION }}
         with:
-          projectBaseDir: .
           extraProperties: |
             sonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
             sonar.organization=${{ env.SONAR_ORGANIZATION }}
