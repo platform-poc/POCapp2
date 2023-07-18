@@ -62,7 +62,7 @@ jobs:
         uses: google-github-actions/deploy-cloudrun@main
         with:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
-          image: gcr.io/${{ env.PROJECT_ID }}/poc-ikea_pocapp2
+          image: gcr.io/${{ env.PROJECT_ID }}/pochost2
           service: pochost2
           region: europe-west2
           platform: managed
