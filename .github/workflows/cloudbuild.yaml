@@ -11,7 +11,7 @@ on:
 
 env:
   PROJECT_ID: clean-mason-391409
-  SERVICE: pochost
+  SERVICE: pochost2
   REGION: europe-west2
   SONAR_PROJECT_KEY: poc-ikea_pocapp2
   SONAR_ORGANIZATION: poc-ikea
