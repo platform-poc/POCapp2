@@ -63,7 +63,7 @@ jobs:
         with:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           image: gcr.io/${{ env.PROJECT_ID }}/poc-ikea_pocapp2
-          service: poc-ikea_pocapp2
+          service: pochost2
           region: europe-west2
           platform: managed
           # Add any additional flags or configurations as needed
