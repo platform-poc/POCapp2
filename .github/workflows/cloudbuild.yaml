@@ -34,7 +34,8 @@ jobs:
             --config .eslintrc.js
             --ext .js,.jsx,.ts,.tsx
             --format json
-            --output-file eslint_results.json
+            --output-file 
+  
         continue-on-error: true
       - name: Run lint
         run: npx eslint --format=json . > eslint_report.json
@@ -78,6 +79,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ESLint Report
-          path: eslint_results.json
+          path: eslint_report.json
     env:
       PROJECT_ID: clean-mason-391409
