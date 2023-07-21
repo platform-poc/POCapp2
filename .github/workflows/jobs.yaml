@@ -1,4 +1,4 @@
-name: cloudbuild
+name: poc-ikea
 
 on:
   push:
