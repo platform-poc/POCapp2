@@ -16,12 +16,6 @@ env:
   SONAR_PROJECT_KEY: poc-ikea_pocapp2
   SONAR_ORGANIZATION: poc-ikea
 
-# Use "extends" to include separate YAML files for each job
-extends:
-  - feature.yaml
-  - pr-event.yaml
-  - pr-merge.yaml
-
 jobs:
   eslint_job:
     runs-on: ubuntu-latest
@@ -29,7 +23,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Add the necessary steps for ESLint job
       - name: Install dependencies
         run: npm ci
         # ... other dependency setup steps ...
@@ -58,7 +51,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Add the necessary steps for SonarCloud Scan job
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v1.9.1
         with:
@@ -77,12 +69,10 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - sonarcloud_scan_job
-      - merge_pr_job  # This job needs the Merge PR job to be completed before it runs
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Add the necessary steps for Build and Deploy job
       - name: Install dependencies
         run: npm ci
         # ... other dependency setup steps ...
